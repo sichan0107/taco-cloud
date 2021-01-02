@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Taco Cloud</title>
+	<link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+	<form method="POST" th:action="@{/orders}" th:object="${order}">
+		<h1>타코 주문서 작성!!</h1>
+		
+		<img th:src="@{/images/taco.png}"/>
+		<a th:href="@{/design}" id="another">하나 더 주문하기</a>
+		
+		<div th:if="${#fields.hasErrors()}">
+			<span class="validationError">
+			주문이 잘못되어 다시 해주세요 ㅠㅠ
+			</span>
+		</div>
+		
+		<h3>주문자 정보</h3>
+		
+		<label for="deliveryName">성함 : </label>
+		<input type="text" th:field="*{deliveryName}"/>
+		<br />
+		
+		<label for="deliveryStreet">도로명 : </label>
+		<input type="text" th:field="*{deliveryStreet}"/>
+		<br />
+		
+		<label for="deliveryCity">시도명 : </label>
+		<input type="text" th:field="*{deliveryCity}"/>
+		<br />
+		
+		<h3>결제 방식</h3>
+
+		<label for="ccNumber">카드 번호 : </label>
+		<input type="text" th:field="*{ccNumber}"/>
+		<br />
+		<label for="ccExpiration">만료일 : </label>
+		<input type="text" th:field="*{ccExpiration}"/>
+		<br />
+		<label for="ccCVV">CVC 번호 : </label>
+		<input type="text" th:field="*{ccCVV}"/>
+		<br />
+		
+		<input type="submit" value="주문 끝!">
+	</form>
+
+</body>
+</html>
