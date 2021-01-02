@@ -1,4 +1,4 @@
-## taco-cloud <hr>
+## taco-cloud
 
 1. Spring Security 403 Forbidden 에러 처리
   - Security Starter를 의존성에 추가시키면, 자동으로 보안이 실행된다.
