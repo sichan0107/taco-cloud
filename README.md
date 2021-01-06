@@ -20,4 +20,4 @@
 2-2. 유효성 검사 에러 보여주기 (Thymeleaf)
   - fields와 th:errors 속성으로 Errors 객체를 편리하게 받아 쓸 수 있다.
   - <span> 요소를 템플릿에 이렇게 추가한다.
-    - <span class="validationError" th:if="${#fields.hasErrors('ccNumber')}" th:errors="*{ccNumber}"></span>
+    - span class="validationError" th:if="${#fields.hasErrors('ccNumber')}" th:errors="*{ccNumber}"
