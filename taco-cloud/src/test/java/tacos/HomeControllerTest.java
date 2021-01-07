@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 //스프링 MVC 형태로 테스트가 진행되도록 도와주는 어노테이션
-@WebMvcTest(HomeController.class)
+@WebMvcTest
 class HomeControllerTest {
 	@Autowired
 	private MockMvc mockMvc; //서버 실행대신 모의 테스트를 하기위한 주입
