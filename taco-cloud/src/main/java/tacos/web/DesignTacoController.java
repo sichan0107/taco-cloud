@@ -1,11 +1,13 @@
 package tacos.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,25 +19,23 @@ import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Taco;
+import tacos.data.IngredientRepository;
 
 @Slf4j
 @Controller
 @RequestMapping("/design")
 public class DesignTacoController {
+	private final IngredientRepository ingredientRepo;
+	
+	@Autowired
+	public DesignTacoController(IngredientRepository ingredientRepo) {
+		this.ingredientRepo = ingredientRepo;
+	}
+	
 	@GetMapping
 	public String showDesignForm(Model model) {
-		List<Ingredient> ingredients = Arrays.asList(
-				new Ingredient("FLTO", "밀가루 또띠아", Type.WRAP),
-				new Ingredient("COTO", "옥수수 또띠아", Type.WRAP),
-				new Ingredient("GRBF", "소고기", Type.PROTEIN),
-				new Ingredient("TOBU", "두부", Type.PROTEIN),
-				new Ingredient("TMTO", "토마토", Type.VEGGIES),
-				new Ingredient("LETC", "양상추", Type.VEGGIES),
-				new Ingredient("CHED", "체다치즈", Type.CHEESE),
-				new Ingredient("MZRL", "모짜렐라 치즈", Type.CHEESE),				
-				new Ingredient("SLSA", "살사소스", Type.SAUCE),
-				new Ingredient("SRCR", "사워크림", Type.SAUCE)
-				);
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 		
 		/*
 		 * 식자재의 유형을 List에서 필터링한 다음 Model 속성에 추가
